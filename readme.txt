@@ -1,5 +1,5 @@
 === Unified RSS for Dzen ===
-Contributors: eugenekrukov
+Contributors: e-krukov
 Donate link:
 Tags: rss, dzen, yandex news, feed, news
 Requires at least: 5.8

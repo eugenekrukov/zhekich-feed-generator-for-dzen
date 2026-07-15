@@ -12,11 +12,15 @@ class SettingsPage
     private const SETTINGS_GROUP = 'dzen_unified_rss_group';
     public const PRO_TAB_ACTION = 'dzen_unified_rss_render_pro_tab';
     private const PURCHASE_URL = 'https://dzenrss.studio1008.com/';
+    private const STYLE_HANDLE = 'dzen-unified-rss-admin';
+
+    private string $pageHook = '';
 
     public function register(): void
     {
         add_action('admin_menu', [$this, 'addMenu']);
         add_action('admin_init', [$this, 'registerSettings']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
     }
 
     public function addMenu(): void
@@ -30,8 +34,31 @@ class SettingsPage
         );
 
         if ($hook) {
+            $this->pageHook = $hook;
             add_action("load-{$hook}", [$this, 'addHelpTab']);
         }
+    }
+
+    public function enqueueStyles(string $hookSuffix): void
+    {
+        if ($hookSuffix !== $this->pageHook) {
+            return;
+        }
+
+        wp_register_style(self::STYLE_HANDLE, false, [], DZEN_UNIFIED_RSS_VERSION);
+        wp_enqueue_style(self::STYLE_HANDLE);
+        wp_add_inline_style(self::STYLE_HANDLE, '
+            .dzen-unified-rss-settings .dzen-badge { display:inline-block; font-size:11px; line-height:1.6; padding:1px 8px; border-radius:10px; margin-left:6px; vertical-align:middle; font-weight:600; }
+            .dzen-unified-rss-settings .dzen-badge-pro { background:#f3e8ff; color:#6b21a8; }
+            .dzen-unified-rss-settings .dzen-badge-free { background:#e6f4ea; color:#1e7e34; }
+            .dzen-unified-rss-settings .dzen-badge-active { background:#d1fae5; color:#065f46; }
+            .dzen-unified-rss-settings .dzen-variants-overview ol { margin: 8px 0 8px 20px; }
+            .dzen-unified-rss-settings .dzen-variants-overview li { margin-bottom: 6px; }
+            .dzen-unified-rss-settings .postbox { margin-top: 16px; padding: 4px 16px 12px; }
+            .dzen-unified-rss-settings .dzen-locked .postbox { background: #fafafa; }
+            .dzen-unified-rss-settings .dzen-locked h3 { color: #50575e; }
+            .dzen-unified-rss-settings .dzen-license-box code { padding: 3px 6px; }
+        ');
     }
 
     public function addHelpTab(): void
@@ -113,7 +140,6 @@ class SettingsPage
         $tab = isset($_GET['tab']) && $_GET['tab'] === 'pro' ? 'pro' : 'general';
         ?>
         <div class="wrap dzen-unified-rss-settings">
-            <?php $this->renderStyles(); ?>
             <h1>Unified RSS for Dzen</h1>
             <?php $this->renderVariantsOverview(); ?>
 
@@ -139,24 +165,6 @@ class SettingsPage
                 <?php $this->renderProTab(); ?>
             <?php endif; ?>
         </div>
-        <?php
-    }
-
-    private function renderStyles(): void
-    {
-        ?>
-        <style>
-            .dzen-unified-rss-settings .dzen-badge { display:inline-block; font-size:11px; line-height:1.6; padding:1px 8px; border-radius:10px; margin-left:6px; vertical-align:middle; font-weight:600; }
-            .dzen-unified-rss-settings .dzen-badge-pro { background:#f3e8ff; color:#6b21a8; }
-            .dzen-unified-rss-settings .dzen-badge-free { background:#e6f4ea; color:#1e7e34; }
-            .dzen-unified-rss-settings .dzen-badge-active { background:#d1fae5; color:#065f46; }
-            .dzen-unified-rss-settings .dzen-variants-overview ol { margin: 8px 0 8px 20px; }
-            .dzen-unified-rss-settings .dzen-variants-overview li { margin-bottom: 6px; }
-            .dzen-unified-rss-settings .postbox { margin-top: 16px; padding: 4px 16px 12px; }
-            .dzen-unified-rss-settings .dzen-locked .postbox { background: #fafafa; }
-            .dzen-unified-rss-settings .dzen-locked h3 { color: #50575e; }
-            .dzen-unified-rss-settings .dzen-license-box code { padding: 3px 6px; }
-        </style>
         <?php
     }
 
@@ -258,7 +266,7 @@ class SettingsPage
         <?php
     }
 
-    // Само содержимое Pro-вкладки рисует плагин-дополнение Dzen Unified RSS Pro
+    // Само содержимое Pro-вкладки рисует плагин-дополнение Unified RSS for Dzen Pro
     // (не входит в этот репозиторий WP.org — весь код здесь бесплатный и полностью рабочий).
     // Если дополнение не установлено — просто рассказываем, что оно даёт, и куда за ним идти.
     private function renderProTab(): void

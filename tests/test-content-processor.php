@@ -5,6 +5,10 @@
  * поэтому проверяется напрямую. Запуск: php tests/test-content-processor.php
  */
 
+// ContentProcessor теперь несёт стандартный guard defined('ABSPATH') || exit —
+// этот скрипт не грузит WordPress, поэтому подставляем константу сами.
+defined('ABSPATH') || define('ABSPATH', __DIR__);
+
 require __DIR__ . '/../includes/Feed/ContentProcessor.php';
 
 use DzenUnifiedRss\Feed\ContentProcessor;

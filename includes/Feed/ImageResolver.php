@@ -57,7 +57,11 @@ class ImageResolver
                 continue;
             }
 
-            $size = @getimagesize($url);
+            $response = wp_safe_remote_get($url, ['limit_response_size' => 512000]);
+            if (is_wp_error($response)) {
+                continue;
+            }
+            $size = @getimagesizefromstring(wp_remote_retrieve_body($response));
             if ($size && $size[0] >= self::MIN_WIDTH) {
                 return ['url' => $url, 'type' => $size['mime'] ?? 'image/jpeg'];
             }

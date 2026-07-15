@@ -2,6 +2,8 @@
 
 namespace DzenUnifiedRss\Feed;
 
+defined('ABSPATH') || exit;
+
 /**
  * Приводит произвольный HTML контента поста к тегам, которые Дзен реально рендерит
  * в content:encoded (dzen.ru/help/ru/news/seamless/rss.html). Чистый PHP без вызовов
