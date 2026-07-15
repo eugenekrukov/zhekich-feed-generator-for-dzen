@@ -22,8 +22,8 @@ class SettingsPage
     public function addMenu(): void
     {
         $hook = add_options_page(
-            'Dzen Unified RSS',
-            'Dzen Unified RSS',
+            'Unified RSS for Dzen',
+            'Unified RSS for Dzen',
             'manage_options',
             self::PAGE_SLUG,
             [$this, 'renderPage']
@@ -76,7 +76,7 @@ class SettingsPage
     private function helpFaqHtml(): string
     {
         return '<p><strong>Нужен ли ещё какой-то RSS-плагин для работы?</strong><br>'
-            . 'Нет, Dzen Unified RSS полностью самостоятелен и не зависит от других плагинов.</p>'
+            . 'Нет, Unified RSS for Dzen полностью самостоятелен и не зависит от других плагинов.</p>'
             . '<p><strong>Что делать с Yandex.News Feed by Teplitsa?</strong><br>'
             . 'Его можно деактивировать — этот плагин полностью закрывает его функциональность (лимит возраста, логотипы, '
             . 'исключение рубрик, скрытие автора) в схеме unified-RSS.</p>'
@@ -114,7 +114,7 @@ class SettingsPage
         ?>
         <div class="wrap dzen-unified-rss-settings">
             <?php $this->renderStyles(); ?>
-            <h1>Dzen Unified RSS</h1>
+            <h1>Unified RSS for Dzen</h1>
             <?php $this->renderVariantsOverview(); ?>
 
             <h2 class="nav-tab-wrapper">
@@ -290,7 +290,7 @@ class SettingsPage
             <div class="postbox">
                 <div class="inside">
                     <h3>Как получить Pro</h3>
-                    <p>Варианты 1 и 2 включает отдельное дополнение <strong>Dzen Unified RSS Pro</strong> — устанавливается
+                    <p>Варианты 1 и 2 включает отдельное дополнение <strong>Unified RSS for Dzen Pro</strong> — устанавливается
                         поверх этого плагина. После оплаты вы получите ссылку на скачивание и ключ активации.</p>
                     <p><a class="button button-primary" href="<?php echo esc_url(self::PURCHASE_URL); ?>" target="_blank" rel="noopener">Купить лицензию</a></p>
                 </div>
