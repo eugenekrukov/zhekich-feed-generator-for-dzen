@@ -80,7 +80,9 @@ class FeedGenerator
             }
         }
 
-        echo $dom->saveXML();
+        // Весь документ уже собран из escaped/CDATA-обёрнутых узлов DOMDocument выше —
+        // saveXML() отдаёт готовый well-formed XML, а не сырой пользовательский ввод.
+        echo $dom->saveXML(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         exit;
     }
 
@@ -110,7 +112,8 @@ class FeedGenerator
 
     private static function appendItem(\DOMDocument $dom, \DOMElement $channel, \WP_Post $post, string $contentType, ?string $link): void
     {
-        $processed = ContentProcessor::process(apply_filters('the_content', $post->post_content));
+        // 'the_content' — стандартный хук ядра WordPress (шорткоды, embeds), а не наш собственный.
+        $processed = ContentProcessor::process(apply_filters('the_content', $post->post_content)); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
         if (!ContentProcessor::meetsMinLength($processed)) {
             return;
         }

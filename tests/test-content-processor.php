@@ -21,6 +21,21 @@ if (!function_exists('str_contains')) {
     }
 }
 
+// wp_strip_all_tags() — функция WordPress, здесь не загружена; заглушка повторяет
+// реализацию из wp-includes/formatting.php (script/style вырезаются целиком, остальное — strip_tags).
+if (!function_exists('wp_strip_all_tags')) {
+    function wp_strip_all_tags(string $string, bool $removeBreaks = false): string
+    {
+        $string = preg_replace('@<(script|style)[^>]*?>.*?</\\1>@si', '', $string);
+        $string = strip_tags($string);
+        if ($removeBreaks) {
+            $string = preg_replace('/[\r\n\t ]+/', ' ', $string);
+        }
+
+        return trim($string);
+    }
+}
+
 $failures = 0;
 
 function check(string $label, bool $condition): void

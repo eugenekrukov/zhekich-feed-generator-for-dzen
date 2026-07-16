@@ -9,110 +9,108 @@ Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Самостоятельный генератор unified-RSS фида для Дзена — замена заброшенному Yandex.News Feed by Teplitsa.
+Self-contained unified-RSS feed generator for Dzen — a replacement for the abandoned Yandex.News Feed by Teplitsa.
 
 == Description ==
 
-Дзен перевёл сайты-партнёры на единый формат RSS для Новостей и канала (см. [dzen.ru/help/ru/news/seamless/rss.html](https://dzen.ru/help/ru/news/seamless/rss.html), правила от 13.07.2026). Старые раздельные ленты отключаются автоматически. Плагин Yandex.News Feed by Teplitsa, которым пользовались тысячи сайтов, официально не поддерживается и не получит обновление.
+Dzen moved partner sites to a single unified RSS format for News and channel content (see [dzen.ru/help/ru/news/seamless/rss.html](https://dzen.ru/help/ru/news/seamless/rss.html), rules effective 2026-07-13). The old separate feeds are being switched off automatically. Yandex.News Feed by Teplitsa, used by thousands of sites, is no longer supported and will not be updated.
 
-Unified RSS for Dzen — независимая замена, не зависит от сторонних RSS-плагинов.
+Unified RSS for Dzen is an independent replacement that does not depend on any third-party RSS plugin.
 
-= Три схемы unified-RSS =
+= Three unified-RSS schemes =
 
-Дзен принимает три схемы; плагин поддерживает все три:
+Dzen accepts three schemes; this plugin supports all of them:
 
-1. **Единый поток, `<contentType>` на пост.** Тип публикации (Новости / канал / оба) выбирается индивидуально на каждой записи. *Pro.*
-2. **Единый поток, два адреса на публикацию.** У каждой записи — обычная страница сайта и отдельная теневая страница-зеркало (Дзен сверяет заголовок/текст с содержимым страницы по ссылке). *Pro.*
-3. **Два отдельных потока.** Один целиком для Новостей, другой целиком для канала — не требует различий между постами, самый низкий порог входа. *Free.*
+1. **Single feed, `<contentType>` per post.** The publication type (News / channel / both) is chosen individually for each post. *Pro.*
+2. **Single feed, two URLs per post.** Each post has its regular site page plus a separate shadow mirror page (Dzen compares the title/text against the page content). *Pro.*
+3. **Two separate feeds.** One feed entirely for News, another entirely for the channel — no per-post differences needed, the lowest barrier to entry. *Free.*
 
 = Free =
 
-* Готовые потоки `/feed/dzen-news/` (Новости) и `/feed/dzen/` (канал).
-* Лимит возраста записей, логотип и квадратный логотип, исключение рубрик/термов, скрытие автора — полный функциональный паритет с Yandex.News Feed by Teplitsa.
-* Собственный HTML-процессор под требования Дзена: разрешённые теги (`p, a, b, i, u, s, h1-h4, blockquote, ul/ol+li, img, figure, figcaption`), замена `em` → `i`, `strong` → `b`, `br` → абзацы, обложка `<enclosure>` не меньше 700px, `media:rating`.
+* Ready-made feeds `/feed/dzen-news/` (News) and `/feed/dzen/` (channel).
+* Post age limit, logo and square logo, category/term exclusion, hide author — full feature parity with Yandex.News Feed by Teplitsa.
+* Its own HTML processor built for Dzen's requirements: allowed tags (`p, a, b, i, u, s, h1-h4, blockquote, ul/ol+li, img, figure, figcaption`), `em` → `i`, `strong` → `b`, `br` → paragraphs, `<enclosure>` cover image at least 700px wide, `media:rating`.
 
 = Pro =
 
-Варианты 1 и 2 включает отдельное платное дополнение **Unified RSS for Dzen Pro** — устанавливается
-поверх этого плагина, не распространяется через каталог WordPress.org (весь код в этом
-репозитории бесплатный и полностью рабочий сам по себе, без Pro).
+Variants 1 and 2 are provided by a separate paid add-on, **Unified RSS for Dzen Pro** — installed
+on top of this plugin, not distributed through the WordPress.org directory (all the code in this
+repository is free and fully functional on its own, without Pro).
 
-* По-постовое управление типом публикации через meta-box на странице записи (вариант 1).
-* Режим с двумя адресами на публикацию через автоматические теневые страницы (вариант 2).
-* Покупка и активация — на вкладке «Pro» в настройках этого плагина.
+* Per-post publication type control via a meta box on the post edit screen (variant 1).
+* Dual-URL mode via automatic shadow pages (variant 2).
+* Purchase and activation happen on the "Pro" tab in this plugin's settings.
 
-= Отказ от ответственности =
+= Disclaimer =
 
-Плагин не аффилирован с Яндексом/Дзеном и не является официальным продуктом. «Дзен» и «Яндекс.Новости» — товарные знаки соответствующих правообладателей, упомянуты исключительно для описания совместимости.
+This plugin is not affiliated with Yandex/Dzen and is not an official product. "Dzen" and "Yandex.News" are trademarks of their respective owners, mentioned solely to describe compatibility.
 
 == Installation ==
 
-1. Загрузите папку плагина в `wp-content/plugins/`.
-2. Активируйте плагин в админке WordPress.
-3. Настройки → Unified RSS for Dzen, вкладка «Основное» — укажите лимит возраста, логотипы, исключения.
-4. Добавьте URL `/feed/dzen-news/` и `/feed/dzen/` в кабинет Дзена для медиа.
-5. Если ранее использовался Yandex.News Feed by Teplitsa — его можно деактивировать, функциональность полностью перенесена.
+1. Upload the plugin folder to `wp-content/plugins/`.
+2. Activate the plugin from the WordPress admin.
+3. Go to Settings → Unified RSS for Dzen, "General" tab — set the age limit, logos, exclusions.
+4. Add the `/feed/dzen-news/` and `/feed/dzen/` URLs in your Dzen media account.
+5. If you were using Yandex.News Feed by Teplitsa, you can deactivate it — its functionality has been fully carried over.
 
 == Frequently Asked Questions ==
 
-= Нужен ли ещё какой-то RSS-плагин для работы? =
+= Do I need another RSS plugin as well? =
 
-Нет. Unified RSS for Dzen полностью самостоятелен, сам генерирует XML и обрабатывает контент, не зависит от других плагинов.
+No. Unified RSS for Dzen is fully self-contained, generates its own XML and processes content without depending on other plugins.
 
-= Что делать с Yandex.News Feed by Teplitsa? =
+= What should I do with Yandex.News Feed by Teplitsa? =
 
-Можно деактивировать — вся его функциональность (лимит возраста, логотипы, исключение рубрик, скрытие автора) перенесена в free-режим этого плагина под новый формат Дзена.
+You can deactivate it — all of its functionality (age limit, logos, category exclusion, hiding the author) has been carried over into this plugin's free mode, updated for Dzen's new format.
 
-= Какие URL добавлять в кабинет Дзена? =
+= Which URLs do I add in the Dzen dashboard? =
 
-В free-режиме — оба адреса вкладки «Основное» (`/feed/dzen-news/` и `/feed/dzen/`). В Pro — один из адресов вкладки «Pro», в зависимости от выбранного варианта (1 или 2).
+In free mode, both addresses from the "General" tab (`/feed/dzen-news/` and `/feed/dzen/`). In Pro, one of the addresses on the "Pro" tab, depending on the chosen variant (1 or 2).
 
-= Как купить Pro? =
+= How do I buy Pro? =
 
-Кнопка «Купить лицензию» на вкладке «Pro» ведёт на страницу оплаты. После оплаты на почту приходит ссылка на скачивание дополнения Unified RSS for Dzen Pro и ключ активации — устанавливаете дополнение поверх этого плагина и вставляете ключ на той же вкладке.
+The "Buy license" button on the "Pro" tab leads to the payment page. After payment, you receive a download link for the Unified RSS for Dzen Pro add-on and an activation key by email — install the add-on on top of this plugin and enter the key on the same tab.
 
-= Почему часть тегов исчезает из текста публикации? =
+= Why do some tags disappear from my post content? =
 
-Дзен рендерит ограниченный набор HTML-тегов в `content:encoded` (`p, a, b, i, u, s, h1-h4, blockquote, ul/ol+li, img, figure, figcaption`). Всё остальное либо преобразуется (`em`→`i`, `strong`→`b`, `br`→абзацы), либо убирается — это требование площадки, не ошибка плагина.
+Dzen renders a limited set of HTML tags in `content:encoded` (`p, a, b, i, u, s, h1-h4, blockquote, ul/ol+li, img, figure, figcaption`). Everything else is either converted (`em`→`i`, `strong`→`b`, `br`→paragraphs) or removed — this is a platform requirement, not a plugin bug.
 
 == Screenshots ==
 
-1. Вкладка «Основное» — настройки free-режима (лимит возраста, логотипы, исключения).
-2. Вкладка «Pro» — обзор вариантов 1 и 2, форма активации лицензии.
-3. Meta-box «Дзен: тип публикации» на странице редактирования записи (Pro, вариант 1).
+1. "General" tab — free mode settings (age limit, logos, exclusions).
+2. "Pro" tab — overview of variants 1 and 2, license activation form.
+3. "Dzen: publication type" meta box on the post edit screen (Pro, variant 1).
 
 == Changelog ==
 
 = 1.2.1 =
-* Плагин переименован из «Dzen Unified RSS» в «Unified RSS for Dzen» (slug: unified-rss-for-dzen) —
-  требование каталога WordPress.org: имя не может начинаться с товарного знака без подтверждения
-  владения через email-домен.
+* Renamed the plugin from "Dzen Unified RSS" to "Unified RSS for Dzen" (slug: unified-rss-for-dzen) —
+  required by the WordPress.org directory: a plugin name cannot start with a trademark without
+  verified ownership of that trademark's email domain.
 
 = 1.2.0 =
-* Pro-функциональность (варианты 1 и 2) и лицензирование вынесены в отдельное дополнение
-  Unified RSS for Dzen Pro — этот плагин теперь на 100% бесплатный и полностью рабочий сам по себе,
-  без единой строчки лицензионно-заблокированного кода (требование каталога WordPress.org).
-* Вкладка «Pro» без установленного дополнения показывает, что оно даёт, и ссылку на покупку.
+* Pro functionality (variants 1 and 2) and licensing moved to a separate add-on,
+  Unified RSS for Dzen Pro — this plugin is now 100% free and fully functional on its own,
+  without a single line of license-gated code (required by the WordPress.org directory).
+* The "Pro" tab, when the add-on isn't installed, shows what it offers and a link to buy it.
 
 = 1.1.0 =
-* Вкладки «Основное» / «Pro» в настройках, наглядное описание вариантов 1/2/3.
-* Лицензирование Pro через ключ активации вместо чекбокса.
-* Встроенная справка (WP Help Tab) с описанием схем unified-RSS и FAQ.
-* `uninstall.php` теперь очищает transient и post-meta, не только опцию.
-* Исправлен баг варианта 2: rewrite-правило теневой страницы не регистрировалось ни при одном запросе (add_action('init', ...) изнутри уже выполняющегося колбэка на init).
+* "General" / "Pro" tabs in settings, a clear explanation of variants 1/2/3.
+* Pro licensing via an activation key instead of a checkbox.
+* Built-in help (WP Help Tab) describing the unified-RSS schemes and FAQ.
+* `uninstall.php` now clears the transient and post meta, not just the option.
+* Fixed a variant 2 bug: the shadow page rewrite rule was never registered (add_action('init', ...) called from inside a callback already running on init).
 
 = 1.0.0 =
-* Первый релиз: free-режим (вариант 3), pro-режим (варианты 1 и 2).
+* First release: free mode (variant 3), pro mode (variants 1 and 2).
 
 == Upgrade Notice ==
 
 = 1.2.1 =
-Плагин переименован в Unified RSS for Dzen (slug: unified-rss-for-dzen). Обновление через WordPress
-невозможно из-за смены slug — деактивируйте старую версию, установите новую вручную (настройки
-сохранятся, опция в базе не переименована).
+Plugin renamed to Unified RSS for Dzen (slug changed). WordPress can't auto-update across a slug change — deactivate the old version and install this one manually. Your settings are preserved.
 
 = 1.2.0 =
-Если у вас была включена Pro-функциональность — установите отдельное дополнение Unified RSS for Dzen Pro и активируйте лицензию заново на вкладке «Pro» после обновления этого плагина.
+If you had Pro features enabled, install the separate Unified RSS for Dzen Pro add-on and reactivate your license on the Pro tab after updating this plugin.
 
 = 1.1.0 =
-Если Pro использовался через старый флажок «Pro-режим» — активируйте лицензию заново на вкладке «Pro» после обновления.
+If Pro was enabled via the old "Pro mode" checkbox, reactivate your license on the Pro tab after updating.

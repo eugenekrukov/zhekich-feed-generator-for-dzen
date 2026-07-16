@@ -137,7 +137,8 @@ class SettingsPage
             return;
         }
 
-        $tab = isset($_GET['tab']) && $_GET['tab'] === 'pro' ? 'pro' : 'general';
+        // Только переключение отображаемой вкладки, никаких изменений состояния — нонс не нужен.
+        $tab = isset($_GET['tab']) && $_GET['tab'] === 'pro' ? 'pro' : 'general'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         ?>
         <div class="wrap dzen-unified-rss-settings">
             <h1>Unified RSS for Dzen</h1>
@@ -272,7 +273,7 @@ class SettingsPage
     private function renderProTab(): void
     {
         if (has_action(self::PRO_TAB_ACTION)) {
-            do_action(self::PRO_TAB_ACTION);
+            do_action(self::PRO_TAB_ACTION); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- значение константы уже с префиксом dzen_unified_rss_
 
             return;
         }
