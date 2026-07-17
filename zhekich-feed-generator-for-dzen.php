@@ -1,21 +1,21 @@
 <?php
 /**
- * Plugin Name: Unified RSS for Dzen
- * Plugin URI: https://github.com/eugenekrukov/unified-rss-for-dzen
+ * Plugin Name: Zhekich Feed Generator for Dzen
+ * Plugin URI: https://github.com/eugenekrukov/zhekich-feed-generator-for-dzen
  * Description: Самостоятельный генератор unified-RSS фида для Дзена (Новости + канал) по правилам от 13.07.2026 (dzen.ru/help/ru/news/seamless/rss.html). Замена для заброшенного Yandex.News Feed by Teplitsa.
- * Version: 1.2.1
+ * Version: 1.2.2
  * Requires PHP: 7.4
  * Author: Eugene Krukov
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: unified-rss-for-dzen
+ * Text Domain: zhekich-feed-generator-for-dzen
  */
 
 defined('ABSPATH') || exit;
 
 define('DZEN_UNIFIED_RSS_DIR', plugin_dir_path(__FILE__));
 define('DZEN_UNIFIED_RSS_URL', plugin_dir_url(__FILE__));
-define('DZEN_UNIFIED_RSS_VERSION', '1.2.1');
+define('DZEN_UNIFIED_RSS_VERSION', '1.2.2');
 
 spl_autoload_register(static function (string $class): void {
     $prefix = 'DzenUnifiedRss\\';

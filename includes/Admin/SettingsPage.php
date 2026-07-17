@@ -26,8 +26,8 @@ class SettingsPage
     public function addMenu(): void
     {
         $hook = add_options_page(
-            'Unified RSS for Dzen',
-            'Unified RSS for Dzen',
+            'Zhekich Feed Generator for Dzen',
+            'Zhekich Feed Generator for Dzen',
             'manage_options',
             self::PAGE_SLUG,
             [$this, 'renderPage']
@@ -103,7 +103,7 @@ class SettingsPage
     private function helpFaqHtml(): string
     {
         return '<p><strong>Нужен ли ещё какой-то RSS-плагин для работы?</strong><br>'
-            . 'Нет, Unified RSS for Dzen полностью самостоятелен и не зависит от других плагинов.</p>'
+            . 'Нет, Zhekich Feed Generator for Dzen полностью самостоятелен и не зависит от других плагинов.</p>'
             . '<p><strong>Что делать с Yandex.News Feed by Teplitsa?</strong><br>'
             . 'Его можно деактивировать — этот плагин полностью закрывает его функциональность (лимит возраста, логотипы, '
             . 'исключение рубрик, скрытие автора) в схеме unified-RSS.</p>'
@@ -141,7 +141,7 @@ class SettingsPage
         $tab = isset($_GET['tab']) && $_GET['tab'] === 'pro' ? 'pro' : 'general'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         ?>
         <div class="wrap dzen-unified-rss-settings">
-            <h1>Unified RSS for Dzen</h1>
+            <h1>Zhekich Feed Generator for Dzen</h1>
             <?php $this->renderVariantsOverview(); ?>
 
             <h2 class="nav-tab-wrapper">
@@ -267,7 +267,7 @@ class SettingsPage
         <?php
     }
 
-    // Само содержимое Pro-вкладки рисует плагин-дополнение Unified RSS for Dzen Pro
+    // Само содержимое Pro-вкладки рисует плагин-дополнение Zhekich Feed Generator for Dzen Pro
     // (не входит в этот репозиторий WP.org — весь код здесь бесплатный и полностью рабочий).
     // Если дополнение не установлено — просто рассказываем, что оно даёт, и куда за ним идти.
     private function renderProTab(): void
@@ -299,7 +299,7 @@ class SettingsPage
             <div class="postbox">
                 <div class="inside">
                     <h3>Как получить Pro</h3>
-                    <p>Варианты 1 и 2 включает отдельное дополнение <strong>Unified RSS for Dzen Pro</strong> — устанавливается
+                    <p>Варианты 1 и 2 включает отдельное дополнение <strong>Zhekich Feed Generator for Dzen Pro</strong> — устанавливается
                         поверх этого плагина. После оплаты вы получите ссылку на скачивание и ключ активации.</p>
                     <p><a class="button button-primary" href="<?php echo esc_url(self::PURCHASE_URL); ?>" target="_blank" rel="noopener">Купить лицензию</a></p>
                 </div>

@@ -1,11 +1,11 @@
-=== Unified RSS for Dzen ===
+=== Zhekich Feed Generator for Dzen ===
 Contributors: e-krukov
 Donate link:
 Tags: rss, dzen, yandex news, feed, news
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Self-contained unified-RSS feed generator for Dzen — a replacement for the aba
 
 Dzen moved partner sites to a single unified RSS format for News and channel content (see [dzen.ru/help/ru/news/seamless/rss.html](https://dzen.ru/help/ru/news/seamless/rss.html), rules effective 2026-07-13). The old separate feeds are being switched off automatically. Yandex.News Feed by Teplitsa, used by thousands of sites, is no longer supported and will not be updated.
 
-Unified RSS for Dzen is an independent replacement that does not depend on any third-party RSS plugin.
+Zhekich Feed Generator for Dzen is an independent replacement that does not depend on any third-party RSS plugin.
 
 = Three unified-RSS schemes =
 
@@ -33,7 +33,7 @@ Dzen accepts three schemes; this plugin supports all of them:
 
 = Pro =
 
-Variants 1 and 2 are provided by a separate paid add-on, **Unified RSS for Dzen Pro** — installed
+Variants 1 and 2 are provided by a separate paid add-on, **Zhekich Feed Generator for Dzen Pro** — installed
 on top of this plugin, not distributed through the WordPress.org directory (all the code in this
 repository is free and fully functional on its own, without Pro).
 
@@ -49,7 +49,7 @@ This plugin is not affiliated with Yandex/Dzen and is not an official product. "
 
 1. Upload the plugin folder to `wp-content/plugins/`.
 2. Activate the plugin from the WordPress admin.
-3. Go to Settings → Unified RSS for Dzen, "General" tab — set the age limit, logos, exclusions.
+3. Go to Settings → Zhekich Feed Generator for Dzen, "General" tab — set the age limit, logos, exclusions.
 4. Add the `/feed/dzen-news/` and `/feed/dzen/` URLs in your Dzen media account.
 5. If you were using Yandex.News Feed by Teplitsa, you can deactivate it — its functionality has been fully carried over.
 
@@ -57,7 +57,7 @@ This plugin is not affiliated with Yandex/Dzen and is not an official product. "
 
 = Do I need another RSS plugin as well? =
 
-No. Unified RSS for Dzen is fully self-contained, generates its own XML and processes content without depending on other plugins.
+No. Zhekich Feed Generator for Dzen is fully self-contained, generates its own XML and processes content without depending on other plugins.
 
 = What should I do with Yandex.News Feed by Teplitsa? =
 
@@ -69,7 +69,7 @@ In free mode, both addresses from the "General" tab (`/feed/dzen-news/` and `/fe
 
 = How do I buy Pro? =
 
-The "Buy license" button on the "Pro" tab leads to the payment page. After payment, you receive a download link for the Unified RSS for Dzen Pro add-on and an activation key by email — install the add-on on top of this plugin and enter the key on the same tab.
+The "Buy license" button on the "Pro" tab leads to the payment page. After payment, you receive a download link for the Zhekich Feed Generator for Dzen Pro add-on and an activation key by email — install the add-on on top of this plugin and enter the key on the same tab.
 
 = Why do some tags disappear from my post content? =
 
@@ -82,6 +82,11 @@ Dzen renders a limited set of HTML tags in `content:encoded` (`p, a, b, i, u, s,
 3. "Dzen: publication type" meta box on the post edit screen (Pro, variant 1).
 
 == Changelog ==
+
+= 1.2.2 =
+* Renamed the plugin from "Unified RSS for Dzen" to "Zhekich Feed Generator for Dzen" (slug:
+  zhekich-feed-generator-for-dzen), per WP.org review feedback that the previous name was too
+  generic/descriptive and not sufficiently distinctive from other Dzen-feed plugins.
 
 = 1.2.1 =
 * Renamed the plugin from "Dzen Unified RSS" to "Unified RSS for Dzen" (slug: unified-rss-for-dzen) —
@@ -105,6 +110,9 @@ Dzen renders a limited set of HTML tags in `content:encoded` (`p, a, b, i, u, s,
 * First release: free mode (variant 3), pro mode (variants 1 and 2).
 
 == Upgrade Notice ==
+
+= 1.2.2 =
+Plugin renamed to Zhekich Feed Generator for Dzen (slug changed again). Deactivate the old version and install this one manually — WordPress can't auto-update across a slug change. Your settings are preserved.
 
 = 1.2.1 =
 Plugin renamed to Unified RSS for Dzen (slug changed). WordPress can't auto-update across a slug change — deactivate the old version and install this one manually. Your settings are preserved.
