@@ -5,7 +5,7 @@ Tags: rss, dzen, yandex news, feed, news
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,12 @@ Dzen renders a limited set of HTML tags in `content:encoded` (`p, a, b, i, u, s,
 3. "Dzen: publication type" meta box on the post edit screen (Pro, variant 1).
 
 == Changelog ==
+
+= 1.2.5 =
+* New optional setting: "Include cover image in article text" — if enabled and the article body
+  has no images at all (some sites only ever set a featured image, never embed photos in the
+  text), the cover image is prepended to content:encoded. Off by default; never duplicates an
+  image that's already in the text.
 
 = 1.2.4 =
 * Simplified the "Pro" tab's upsell copy to a single plain description + link, removing the

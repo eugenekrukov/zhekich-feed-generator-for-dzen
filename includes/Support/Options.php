@@ -17,6 +17,7 @@ class Options
             'exclude_taxonomy' => '',
             'exclude_terms'    => '',
             'hide_author'      => true,
+            'cover_in_content' => false,
         ];
     }
 

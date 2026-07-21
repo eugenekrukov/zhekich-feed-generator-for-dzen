@@ -128,6 +128,7 @@ class SettingsPage
             'exclude_taxonomy' => sanitize_key($input['exclude_taxonomy'] ?? ''),
             'exclude_terms'    => sanitize_text_field($input['exclude_terms'] ?? ''),
             'hide_author'      => !empty($input['hide_author']),
+            'cover_in_content' => !empty($input['cover_in_content']),
         ];
     }
 
@@ -251,6 +252,17 @@ class SettingsPage
                                         <?php checked($options['hide_author']); ?>>
                                     не выводить &lt;author&gt; в фиде
                                 </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Включать изображение превью в текст статьи</th>
+                            <td>
+                                <label>
+                                    <input type="checkbox" name="<?php echo esc_attr($key); ?>[cover_in_content]"
+                                        <?php checked($options['cover_in_content']); ?>>
+                                    если в тексте статьи вообще нет картинок — добавить обложку первым элементом
+                                </label>
+                                <p class="description">Не дублирует, если в тексте уже есть хотя бы одна картинка.</p>
                             </td>
                         </tr>
                     </table>

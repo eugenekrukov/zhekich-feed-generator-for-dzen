@@ -99,6 +99,15 @@ class FeedGenerator
             return;
         }
 
+        $image = ImageResolver::resolve($post->ID);
+
+        // Некоторые сайты вообще не вставляют фото в текст (только featured image) —
+        // тогда в content:encoded нет ни одной картинки, хотя обложка есть. Опционально
+        // подставляем её первым элементом, но не дублируем, если фото в тексте уже есть.
+        if ($image && Options::get('cover_in_content') && stripos($processed, '<img') === false) {
+            $processed = sprintf('<p><img src="%s" alt="%s"></p>', esc_url($image['url']), esc_attr(get_the_title($post))) . $processed;
+        }
+
         $link ??= get_permalink($post);
 
         $item = $dom->createElement('item');
@@ -119,7 +128,6 @@ class FeedGenerator
             }
         }
 
-        $image = ImageResolver::resolve($post->ID);
         if ($image) {
             $enclosure = $dom->createElement('enclosure');
             $enclosure->setAttribute('url', $image['url']);
