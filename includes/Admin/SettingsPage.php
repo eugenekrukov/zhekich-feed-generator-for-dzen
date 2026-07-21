@@ -278,31 +278,13 @@ class SettingsPage
             return;
         }
         ?>
-        <div class="dzen-locked">
-            <div class="postbox">
-                <div class="inside">
-                    <h3>🔒 Вариант 1 — по-постовое управление <span class="dzen-badge dzen-badge-pro">Pro</span></h3>
-                    <p>Выбирайте тип публикации (Новости / канал / оба) индивидуально для каждой записи через
-                        блок «Дзен: тип публикации» на странице редактирования — вместо двух раздельных потоков.</p>
-                </div>
-            </div>
-
-            <div class="postbox">
-                <div class="inside">
-                    <h3>🔒 Вариант 2 — два адреса на публикацию <span class="dzen-badge dzen-badge-pro">Pro</span></h3>
-                    <p>Дзен сверяет заголовок и текст публикации с содержимым страницы по ссылке — для сайтов,
-                        где оформление для Новостей и для сайта должно отличаться, плагин автоматически создаёт
-                        теневую страницу-зеркало на отдельном адресе.</p>
-                </div>
-            </div>
-
-            <div class="postbox">
-                <div class="inside">
-                    <h3>Как получить Pro</h3>
-                    <p>Варианты 1 и 2 включает отдельное дополнение <strong>Zhekich Feed Generator for Dzen Pro</strong> — устанавливается
-                        поверх этого плагина. После оплаты вы получите ссылку на скачивание и ключ активации.</p>
-                    <p><a class="button button-primary" href="<?php echo esc_url(self::PURCHASE_URL); ?>" target="_blank" rel="noopener">Купить лицензию</a></p>
-                </div>
+        <div class="postbox">
+            <div class="inside">
+                <p>Варианты 1 и 2 (по-постовый тип публикации и второй адрес на публикацию) не входят
+                    в этот плагин. Их даёт отдельное платное дополнение
+                    <strong>Zhekich Feed Generator for Dzen Pro</strong> — устанавливается поверх этого
+                    плагина и не распространяется через каталог WordPress.org.</p>
+                <p><a class="button button-primary" href="<?php echo esc_url(self::PURCHASE_URL); ?>" target="_blank" rel="noopener">Подробнее и купить</a></p>
             </div>
         </div>
         <?php

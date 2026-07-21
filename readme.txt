@@ -5,7 +5,7 @@ Tags: rss, dzen, yandex news, feed, news
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,11 @@ Dzen renders a limited set of HTML tags in `content:encoded` (`p, a, b, i, u, s,
 3. "Dzen: publication type" meta box on the post edit screen (Pro, variant 1).
 
 == Changelog ==
+
+= 1.2.4 =
+* Simplified the "Pro" tab's upsell copy to a single plain description + link, removing the
+  lock-icon "postbox" panels that visually resembled disabled in-plugin settings modules —
+  purely a presentation change, no functionality was ever gated behind them.
 
 = 1.2.3 =
 * Fixed in-article images being dropped from the feed: WordPress galleries/CDN proxies (e.g. Jetpack
