@@ -5,7 +5,7 @@ Tags: rss, dzen, yandex news, feed, news
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,15 @@ Dzen renders a limited set of HTML tags in `content:encoded` (`p, a, b, i, u, s,
 3. "Dzen: publication type" meta box on the post edit screen (Pro, variant 1).
 
 == Changelog ==
+
+= 1.2.3 =
+* Fixed in-article images being dropped from the feed: WordPress galleries/CDN proxies (e.g. Jetpack
+  Photon) insert small thumbnail URLs into post content, below Dzen's 480×320 minimum for
+  content:encoded images. The plugin now swaps these for the original full-size, same-domain file
+  when available.
+* Removed the last remnants of Pro-only feed rendering (variants 1/2) from this free plugin's code,
+  per WP.org review feedback (Trialware/Guideline 5) — that logic now lives exclusively in the
+  separate Pro add-on, not merely unused-but-present in the free plugin.
 
 = 1.2.2 =
 * Renamed the plugin from "Unified RSS for Dzen" to "Zhekich Feed Generator for Dzen" (slug:

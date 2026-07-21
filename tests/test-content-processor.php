@@ -73,6 +73,17 @@ check('href kept on a', str_contains($out, 'href="https://a.ru"'));
 check('min length: short text fails', !ContentProcessor::meetsMinLength('<p>Коротко.</p>', 300));
 check('min length: long text passes', ContentProcessor::meetsMinLength('<p>' . str_repeat('Текст ', 100) . '</p>', 300));
 
+$out = ContentProcessor::process(
+    '<img src="https://i0.wp.com/example.ru/uploads/photo-500x667.jpg?w=254&#038;h=339&#038;ssl=1" '
+    . 'width="254" height="339" data-orig-file="https://example.ru/uploads/photo.jpg" data-orig-size="1920,2560" alt="фото">'
+);
+check('gallery thumbnail replaced with original-domain full-size file', str_contains($out, 'src="https://example.ru/uploads/photo.jpg"'));
+check('original size attributes applied', str_contains($out, 'width="1920"') && str_contains($out, 'height="2560"'));
+check('photon CDN url not kept', !str_contains($out, 'i0.wp.com'));
+
+$out = ContentProcessor::process('<img src="https://example.ru/uploads/plain.jpg" alt="без data-orig-file">');
+check('image without data-orig-file left untouched', str_contains($out, 'src="https://example.ru/uploads/plain.jpg"'));
+
 echo "\n";
 if ($failures > 0) {
     echo "{$failures} check(s) failed.\n";

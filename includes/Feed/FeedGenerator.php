@@ -22,32 +22,13 @@ class FeedGenerator
     }
 
     /**
-     * Вариант 1: <contentType> берётся из meta по каждому посту, единый поток.
+     * Варианты 1 и 2 (per-post contentType, dual-link) НЕ реализованы в этом (бесплатном,
+     * хостящемся на WP.org) плагине — даже в виде неиспользуемого кода. Их рендерит
+     * DzenUnifiedRss\Pro\ProFeedGenerator в отдельном платном дополнении, которое на
+     * WP.org не публикуется. WP.org прямо запрещает держать в бесплатном плагине готовую,
+     * но не задействованную реализацию премиум-функций «на случай, если купят Pro» —
+     * см. review R❗TRM unified-rss-for-dzen/e-krukov/16Jul26/T2 (Trialware/Guideline 5).
      */
-    public static function outputPerPost(string $metaKey): void
-    {
-        self::renderMulti(QueryHelper::args(false), true, static function (\WP_Post $post) use ($metaKey) {
-            $type = get_post_meta($post->ID, $metaKey, true) ?: 'news';
-
-            return [[$type, null]];
-        });
-    }
-
-    /**
-     * Вариант 2: два <item> на пост — обычная страница сайта (blogs_only)
-     * и теневая страница-зеркало (news_only), см. Pro\DualLinkMode.
-     *
-     * @param callable $shadowUrlResolver function(int $postId): string
-     */
-    public static function outputDualLink(callable $shadowUrlResolver): void
-    {
-        self::renderMulti(QueryHelper::args(false), true, static function (\WP_Post $post) use ($shadowUrlResolver) {
-            return [
-                ['blogs_only', get_permalink($post)],
-                ['news_only', $shadowUrlResolver((int) $post->ID)],
-            ];
-        });
-    }
 
     /**
      * @param callable $resolveVariants function(\WP_Post $post): array<array{0:string,1:?string}>

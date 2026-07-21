@@ -47,6 +47,7 @@ class ContentProcessor
         self::renameTags($dom, self::RENAME_MAP);
         self::splitOnBreaks($dom);
         self::unwrapDisallowed($body);
+        self::useOriginalImageFiles($body);
         self::sanitizeAttributes($body);
         self::removeEmptyElements($body);
 
@@ -159,6 +160,32 @@ class ContentProcessor
                 $node->parentNode->insertBefore($node->firstChild, $node);
             }
             $node->parentNode->removeChild($node);
+        }
+    }
+
+    /**
+     * WP-галереи и CDN-прокси (напр. Jetpack Photon, i0.wp.com) вставляют в текст маленькие
+     * миниатюры не с домена сайта — Дзен требует минимум 480×320 в content:encoded и, вероятно,
+     * не рендерит картинки со стороннего домена. WordPress сам кладёт прямую ссылку на оригинал
+     * в data-orig-file — используем её вместо текущего src, пока data-* ещё не вырезаны sanitizeAttributes().
+     */
+    private static function useOriginalImageFiles(\DOMElement $context): void
+    {
+        foreach (iterator_to_array($context->getElementsByTagName('img')) as $img) {
+            $origFile = $img->getAttribute('data-orig-file');
+            if ($origFile === '') {
+                continue;
+            }
+
+            $img->setAttribute('src', $origFile);
+
+            if (preg_match('/^(\d+),(\d+)$/', $img->getAttribute('data-orig-size'), $m)) {
+                $img->setAttribute('width', $m[1]);
+                $img->setAttribute('height', $m[2]);
+            } else {
+                $img->removeAttribute('width');
+                $img->removeAttribute('height');
+            }
         }
     }
 
