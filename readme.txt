@@ -5,7 +5,7 @@ Tags: rss, dzen, yandex news, feed, news
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,12 @@ Check whether the article actually has an image inside its text — some editori
 3. "Dzen: publication type" meta box on the post edit screen (Pro, variant 1).
 
 == Changelog ==
+
+= 1.2.7 =
+* Properly internationalized the plugin: all admin UI strings now go through `__()`/`esc_html__()`
+  with the `zhekich-feed-generator-for-dzen` text domain (Russian as the source/default text,
+  matching the plugin's actual audience), plus `load_plugin_textdomain()` for reliability outside
+  WordPress.org's own translation loading.
 
 = 1.2.6 =
 * No code changes. Added plugin page assets (icon, banner, screenshots) and documented the

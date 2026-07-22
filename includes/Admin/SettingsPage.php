@@ -26,8 +26,8 @@ class SettingsPage
     public function addMenu(): void
     {
         $hook = add_options_page(
-            'Zhekich Feed Generator for Dzen',
-            'Zhekich Feed Generator for Dzen',
+            __('Zhekich Feed Generator for Dzen', 'zhekich-feed-generator-for-dzen'),
+            __('Zhekich Feed Generator for Dzen', 'zhekich-feed-generator-for-dzen'),
             'manage_options',
             self::PAGE_SLUG,
             [$this, 'renderPage']
@@ -70,46 +70,44 @@ class SettingsPage
 
         $screen->add_help_tab([
             'id'      => 'dzen-variants',
-            'title'   => 'Варианты unified-RSS',
+            'title'   => __('Варианты unified-RSS', 'zhekich-feed-generator-for-dzen'),
             'content' => $this->helpVariantsHtml(),
         ]);
 
         $screen->add_help_tab([
             'id'      => 'dzen-faq',
-            'title'   => 'Частые вопросы',
+            'title'   => __('Частые вопросы', 'zhekich-feed-generator-for-dzen'),
             'content' => $this->helpFaqHtml(),
         ]);
 
         $screen->set_help_sidebar(
-            '<p><strong>Полезные ссылки</strong></p>' .
-            '<p><a href="https://dzen.ru/help/ru/news/seamless/rss.html" target="_blank" rel="noopener">Требования Дзена к unified-RSS</a></p>'
+            '<p><strong>' . esc_html__('Полезные ссылки', 'zhekich-feed-generator-for-dzen') . '</strong></p>' .
+            '<p><a href="https://dzen.ru/help/ru/news/seamless/rss.html" target="_blank" rel="noopener">' . esc_html__('Требования Дзена к unified-RSS', 'zhekich-feed-generator-for-dzen') . '</a></p>'
         );
     }
 
     private function helpVariantsHtml(): string
     {
-        return '<p>Дзен принимает три схемы unified-RSS — плагин поддерживает все три:</p>'
-            . '<p><strong>Вариант 1 (Pro).</strong> Один поток, у каждой записи свой тег &lt;contentType&gt; '
-            . '(«Новости и канал» / «Только Новости» / «Только канал») — выбирается на самой записи через meta-box. '
-            . 'Подходит, если разные посты должны идти в разные места.</p>'
-            . '<p><strong>Вариант 2 (Pro).</strong> Один поток, но у каждой записи два адреса — обычная страница сайта '
-            . 'и отдельная теневая страница-зеркало. Нужен, потому что Дзен сверяет заголовок и текст публикации '
-            . 'с содержимым страницы по ссылке, а оформление для Новостей и для сайта иногда должно отличаться.</p>'
-            . '<p><strong>Вариант 3 (Free).</strong> Два отдельных, жёстко размеченных потока — один целиком для Новостей, '
-            . 'другой целиком для канала. Не требует различий между постами — самый низкий порог входа, подходит почти всем '
-            . 'сайтам, мигрирующим с Yandex.News Feed by Teplitsa.</p>';
+        return '<p>' . esc_html__('Дзен принимает три схемы unified-RSS — плагин поддерживает все три:', 'zhekich-feed-generator-for-dzen') . '</p>'
+            . '<p><strong>' . esc_html__('Вариант 1 (Pro).', 'zhekich-feed-generator-for-dzen') . '</strong> '
+            . esc_html__('Один поток, у каждой записи свой тег <contentType> («Новости и канал» / «Только Новости» / «Только канал») — выбирается на самой записи через meta-box. Подходит, если разные посты должны идти в разные места.', 'zhekich-feed-generator-for-dzen')
+            . '</p>'
+            . '<p><strong>' . esc_html__('Вариант 2 (Pro).', 'zhekich-feed-generator-for-dzen') . '</strong> '
+            . esc_html__('Один поток, но у каждой записи два адреса — обычная страница сайта и отдельная теневая страница-зеркало. Нужен, потому что Дзен сверяет заголовок и текст публикации с содержимым страницы по ссылке, а оформление для Новостей и для сайта иногда должно отличаться.', 'zhekich-feed-generator-for-dzen')
+            . '</p>'
+            . '<p><strong>' . esc_html__('Вариант 3 (Free).', 'zhekich-feed-generator-for-dzen') . '</strong> '
+            . esc_html__('Два отдельных, жёстко размеченных потока — один целиком для Новостей, другой целиком для канала. Не требует различий между постами — самый низкий порог входа, подходит почти всем сайтам, мигрирующим с Yandex.News Feed by Teplitsa.', 'zhekich-feed-generator-for-dzen')
+            . '</p>';
     }
 
     private function helpFaqHtml(): string
     {
-        return '<p><strong>Нужен ли ещё какой-то RSS-плагин для работы?</strong><br>'
-            . 'Нет, Zhekich Feed Generator for Dzen полностью самостоятелен и не зависит от других плагинов.</p>'
-            . '<p><strong>Что делать с Yandex.News Feed by Teplitsa?</strong><br>'
-            . 'Его можно деактивировать — этот плагин полностью закрывает его функциональность (лимит возраста, логотипы, '
-            . 'исключение рубрик, скрытие автора) в схеме unified-RSS.</p>'
-            . '<p><strong>Какие URL добавлять в кабинет Дзена?</strong><br>'
-            . 'В free-режиме — оба адреса вкладки «Основное». В Pro — один из адресов вкладки «Pro», в зависимости '
-            . 'от выбранного варианта.</p>';
+        return '<p><strong>' . esc_html__('Нужен ли ещё какой-то RSS-плагин для работы?', 'zhekich-feed-generator-for-dzen') . '</strong><br>'
+            . esc_html__('Нет, Zhekich Feed Generator for Dzen полностью самостоятелен и не зависит от других плагинов.', 'zhekich-feed-generator-for-dzen') . '</p>'
+            . '<p><strong>' . esc_html__('Что делать с Yandex.News Feed by Teplitsa?', 'zhekich-feed-generator-for-dzen') . '</strong><br>'
+            . esc_html__('Его можно деактивировать — этот плагин полностью закрывает его функциональность (лимит возраста, логотипы, исключение рубрик, скрытие автора) в схеме unified-RSS.', 'zhekich-feed-generator-for-dzen') . '</p>'
+            . '<p><strong>' . esc_html__('Какие URL добавлять в кабинет Дзена?', 'zhekich-feed-generator-for-dzen') . '</strong><br>'
+            . esc_html__('В free-режиме — оба адреса вкладки «Основное». В Pro — один из адресов вкладки «Pro», в зависимости от выбранного варианта.', 'zhekich-feed-generator-for-dzen') . '</p>';
     }
 
     public function registerSettings(): void
@@ -142,19 +140,19 @@ class SettingsPage
         $tab = isset($_GET['tab']) && $_GET['tab'] === 'pro' ? 'pro' : 'general'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         ?>
         <div class="wrap dzen-unified-rss-settings">
-            <h1>Zhekich Feed Generator for Dzen</h1>
+            <h1><?php esc_html_e('Zhekich Feed Generator for Dzen', 'zhekich-feed-generator-for-dzen'); ?></h1>
             <?php $this->renderVariantsOverview(); ?>
 
             <h2 class="nav-tab-wrapper">
                 <a href="<?php echo esc_url(add_query_arg(['page' => self::PAGE_SLUG, 'tab' => 'general'], admin_url('options-general.php'))); ?>"
                    class="nav-tab <?php echo $tab === 'general' ? 'nav-tab-active' : ''; ?>">
-                    Основное (Free)
+                    <?php esc_html_e('Основное (Free)', 'zhekich-feed-generator-for-dzen'); ?>
                 </a>
                 <a href="<?php echo esc_url(add_query_arg(['page' => self::PAGE_SLUG, 'tab' => 'pro'], admin_url('options-general.php'))); ?>"
                    class="nav-tab <?php echo $tab === 'pro' ? 'nav-tab-active' : ''; ?>">
                     Pro
                     <?php if (Options::isPro()): ?>
-                        <span class="dzen-badge dzen-badge-active">активна</span>
+                        <span class="dzen-badge dzen-badge-active"><?php esc_html_e('активна', 'zhekich-feed-generator-for-dzen'); ?></span>
                     <?php else: ?>
                         <span class="dzen-badge dzen-badge-pro">🔒</span>
                     <?php endif; ?>
@@ -174,13 +172,19 @@ class SettingsPage
     {
         ?>
         <div class="notice notice-info inline dzen-variants-overview">
-            <p><strong>Дзен принимает три схемы unified-RSS:</strong></p>
+            <p><strong><?php esc_html_e('Дзен принимает три схемы unified-RSS:', 'zhekich-feed-generator-for-dzen'); ?></strong></p>
             <ol>
-                <li><strong>Вариант 1</strong> — один поток, &lt;contentType&gt; свой у каждой записи (meta-box на посте). <span class="dzen-badge dzen-badge-pro">Pro</span></li>
-                <li><strong>Вариант 2</strong> — один поток, у каждой записи два адреса (страница сайта + теневая копия). <span class="dzen-badge dzen-badge-pro">Pro</span></li>
-                <li><strong>Вариант 3</strong> — два отдельных потока: весь целиком в Новости, весь целиком в канал. Различий между постами не требует. <span class="dzen-badge dzen-badge-free">Free</span></li>
+                <li><strong><?php esc_html_e('Вариант 1', 'zhekich-feed-generator-for-dzen'); ?></strong> — <?php esc_html_e('один поток, <contentType> свой у каждой записи (meta-box на посте).', 'zhekich-feed-generator-for-dzen'); ?> <span class="dzen-badge dzen-badge-pro">Pro</span></li>
+                <li><strong><?php esc_html_e('Вариант 2', 'zhekich-feed-generator-for-dzen'); ?></strong> — <?php esc_html_e('один поток, у каждой записи два адреса (страница сайта + теневая копия).', 'zhekich-feed-generator-for-dzen'); ?> <span class="dzen-badge dzen-badge-pro">Pro</span></li>
+                <li><strong><?php esc_html_e('Вариант 3', 'zhekich-feed-generator-for-dzen'); ?></strong> — <?php esc_html_e('два отдельных потока: весь целиком в Новости, весь целиком в канал. Различий между постами не требует.', 'zhekich-feed-generator-for-dzen'); ?> <span class="dzen-badge dzen-badge-free">Free</span></li>
             </ol>
-            <p>Подробнее — во вкладке <em>Справка</em> в правом верхнем углу этой страницы.</p>
+            <p><?php
+                printf(
+                    /* translators: %s: "Справка" (Help) tab label */
+                    esc_html__('Подробнее — во вкладке %s в правом верхнем углу этой страницы.', 'zhekich-feed-generator-for-dzen'),
+                    '<em>' . esc_html__('Справка', 'zhekich-feed-generator-for-dzen') . '</em>'
+                );
+            ?></p>
         </div>
         <?php
     }
@@ -196,16 +200,16 @@ class SettingsPage
                     <?php settings_fields(self::SETTINGS_GROUP); ?>
                     <table class="form-table">
                         <tr>
-                            <th><label for="max_age_days">Максимальный возраст записей (дни)</label></th>
+                            <th><label for="max_age_days"><?php esc_html_e('Максимальный возраст записей (дни)', 'zhekich-feed-generator-for-dzen'); ?></label></th>
                             <td>
                                 <input type="number" min="0" id="max_age_days"
                                        name="<?php echo esc_attr($key); ?>[max_age_days]"
                                        value="<?php echo esc_attr($options['max_age_days']); ?>">
-                                <p class="description">Только для потока Новостей — фильтр по дате публикации.</p>
+                                <p class="description"><?php esc_html_e('Только для потока Новостей — фильтр по дате публикации.', 'zhekich-feed-generator-for-dzen'); ?></p>
                             </td>
                         </tr>
                         <tr>
-                            <th><label for="logo_url">Логотип (URL)</label></th>
+                            <th><label for="logo_url"><?php esc_html_e('Логотип (URL)', 'zhekich-feed-generator-for-dzen'); ?></label></th>
                             <td>
                                 <input type="url" class="regular-text" id="logo_url"
                                        name="<?php echo esc_attr($key); ?>[logo_url]"
@@ -213,7 +217,7 @@ class SettingsPage
                             </td>
                         </tr>
                         <tr>
-                            <th><label for="logo_square_url">Квадратный логотип (URL)</label></th>
+                            <th><label for="logo_square_url"><?php esc_html_e('Квадратный логотип (URL)', 'zhekich-feed-generator-for-dzen'); ?></label></th>
                             <td>
                                 <input type="url" class="regular-text" id="logo_square_url"
                                        name="<?php echo esc_attr($key); ?>[logo_square_url]"
@@ -221,10 +225,10 @@ class SettingsPage
                             </td>
                         </tr>
                         <tr>
-                            <th><label for="exclude_taxonomy">Таксономия для исключения</label></th>
+                            <th><label for="exclude_taxonomy"><?php esc_html_e('Таксономия для исключения', 'zhekich-feed-generator-for-dzen'); ?></label></th>
                             <td>
                                 <select id="exclude_taxonomy" name="<?php echo esc_attr($key); ?>[exclude_taxonomy]">
-                                    <option value="">— не исключать —</option>
+                                    <option value=""><?php esc_html_e('— не исключать —', 'zhekich-feed-generator-for-dzen'); ?></option>
                                     <?php foreach (get_taxonomies(['public' => true], 'objects') as $taxonomy): ?>
                                         <option value="<?php echo esc_attr($taxonomy->name); ?>"
                                             <?php selected($options['exclude_taxonomy'], $taxonomy->name); ?>>
@@ -235,34 +239,34 @@ class SettingsPage
                             </td>
                         </tr>
                         <tr>
-                            <th><label for="exclude_terms">ID термов для исключения</label></th>
+                            <th><label for="exclude_terms"><?php esc_html_e('ID термов для исключения', 'zhekich-feed-generator-for-dzen'); ?></label></th>
                             <td>
                                 <input type="text" class="regular-text" id="exclude_terms"
                                        name="<?php echo esc_attr($key); ?>[exclude_terms]"
                                        value="<?php echo esc_attr($options['exclude_terms']); ?>"
                                        placeholder="671, 812">
-                                <p class="description">Через запятую, ID термов таксономии выше (например, «Новости компаний»).</p>
+                                <p class="description"><?php esc_html_e('Через запятую, ID термов таксономии выше (например, «Новости компаний»).', 'zhekich-feed-generator-for-dzen'); ?></p>
                             </td>
                         </tr>
                         <tr>
-                            <th>Скрыть автора</th>
+                            <th><?php esc_html_e('Скрыть автора', 'zhekich-feed-generator-for-dzen'); ?></th>
                             <td>
                                 <label>
                                     <input type="checkbox" name="<?php echo esc_attr($key); ?>[hide_author]"
                                         <?php checked($options['hide_author']); ?>>
-                                    не выводить &lt;author&gt; в фиде
+                                    <?php esc_html_e('не выводить <author> в фиде', 'zhekich-feed-generator-for-dzen'); ?>
                                 </label>
                             </td>
                         </tr>
                         <tr>
-                            <th>Включать изображение превью в текст статьи</th>
+                            <th><?php esc_html_e('Включать изображение превью в текст статьи', 'zhekich-feed-generator-for-dzen'); ?></th>
                             <td>
                                 <label>
                                     <input type="checkbox" name="<?php echo esc_attr($key); ?>[cover_in_content]"
                                         <?php checked($options['cover_in_content']); ?>>
-                                    если в тексте статьи вообще нет картинок — добавить обложку первым элементом
+                                    <?php esc_html_e('если в тексте статьи вообще нет картинок — добавить обложку первым элементом', 'zhekich-feed-generator-for-dzen'); ?>
                                 </label>
-                                <p class="description">Не дублирует, если в тексте уже есть хотя бы одна картинка.</p>
+                                <p class="description"><?php esc_html_e('Не дублирует, если в тексте уже есть хотя бы одна картинка.', 'zhekich-feed-generator-for-dzen'); ?></p>
                             </td>
                         </tr>
                     </table>
@@ -270,9 +274,9 @@ class SettingsPage
                 </form>
 
                 <p class="description">
-                    Free-режим (вариант 3, всегда активен):<br>
-                    <code><?php echo esc_html(home_url('/feed/dzen-news/')); ?></code> — Новости,
-                    <code><?php echo esc_html(home_url('/feed/dzen/')); ?></code> — канал.
+                    <?php esc_html_e('Free-режим (вариант 3, всегда активен):', 'zhekich-feed-generator-for-dzen'); ?><br>
+                    <code><?php echo esc_html(home_url('/feed/dzen-news/')); ?></code> — <?php esc_html_e('Новости', 'zhekich-feed-generator-for-dzen'); ?>,
+                    <code><?php echo esc_html(home_url('/feed/dzen/')); ?></code> — <?php esc_html_e('канал', 'zhekich-feed-generator-for-dzen'); ?>.
                 </p>
             </div>
         </div>
@@ -292,11 +296,14 @@ class SettingsPage
         ?>
         <div class="postbox">
             <div class="inside">
-                <p>Варианты 1 и 2 (по-постовый тип публикации и второй адрес на публикацию) не входят
-                    в этот плагин. Их даёт отдельное платное дополнение
-                    <strong>Zhekich Feed Generator for Dzen Pro</strong> — устанавливается поверх этого
-                    плагина и не распространяется через каталог WordPress.org.</p>
-                <p><a class="button button-primary" href="<?php echo esc_url(self::PURCHASE_URL); ?>" target="_blank" rel="noopener">Подробнее и купить</a></p>
+                <p><?php
+                    printf(
+                        /* translators: %s: "Zhekich Feed Generator for Dzen Pro" (product name, not translated) */
+                        esc_html__('Варианты 1 и 2 (по-постовый тип публикации и второй адрес на публикацию) не входят в этот плагин. Их даёт отдельное платное дополнение %s — устанавливается поверх этого плагина и не распространяется через каталог WordPress.org.', 'zhekich-feed-generator-for-dzen'),
+                        '<strong>Zhekich Feed Generator for Dzen Pro</strong>'
+                    );
+                ?></p>
+                <p><a class="button button-primary" href="<?php echo esc_url(self::PURCHASE_URL); ?>" target="_blank" rel="noopener"><?php esc_html_e('Подробнее и купить', 'zhekich-feed-generator-for-dzen'); ?></a></p>
             </div>
         </div>
         <?php
