@@ -5,7 +5,7 @@ Tags: rss, dzen, yandex news, feed, news
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,8 @@ Dzen accepts three schemes; this plugin supports all of them:
 * Ready-made feeds `/feed/dzen-news/` (News) and `/feed/dzen/` (channel).
 * Post age limit, logo and square logo, category/term exclusion, hide author — full feature parity with Yandex.News Feed by Teplitsa.
 * Its own HTML processor built for Dzen's requirements: allowed tags (`p, a, b, i, u, s, h1-h4, blockquote, ul/ol+li, img, figure, figcaption`), `em` → `i`, `strong` → `b`, `br` → paragraphs, `<enclosure>` cover image at least 700px wide, `media:rating`.
+* Automatically swaps undersized/CDN-proxied in-article images (e.g. from WordPress galleries or Jetpack Photon) for the original full-size file when one is available, to meet Dzen's 480×320 minimum for images inside the article body.
+* Optional: include the cover image in the article body itself when the post has no images of its own (some sites only ever set a featured image).
 
 = Pro =
 
@@ -75,6 +77,10 @@ The "Buy license" button on the "Pro" tab leads to the payment page. After payme
 
 Dzen renders a limited set of HTML tags in `content:encoded` (`p, a, b, i, u, s, h1-h4, blockquote, ul/ol+li, img, figure, figcaption`). Everything else is either converted (`em`→`i`, `strong`→`b`, `br`→paragraphs) or removed — this is a platform requirement, not a plugin bug.
 
+= My articles have no image in the feed body, only in the preview =
+
+Check whether the article actually has an image inside its text — some editorial workflows only ever set a featured image and never embed a photo in the post body, in which case there is genuinely no image to carry into `content:encoded`. Turn on "Include cover image in article text" on the "General" tab to have the plugin prepend the cover image to the body automatically when this happens.
+
 == Screenshots ==
 
 1. "General" tab — free mode settings (age limit, logos, exclusions).
@@ -82,6 +88,10 @@ Dzen renders a limited set of HTML tags in `content:encoded` (`p, a, b, i, u, s,
 3. "Dzen: publication type" meta box on the post edit screen (Pro, variant 1).
 
 == Changelog ==
+
+= 1.2.6 =
+* No code changes. Added plugin page assets (icon, banner, screenshots) and documented the
+  image-handling behavior and the cover-in-content setting in the FAQ.
 
 = 1.2.5 =
 * New optional setting: "Include cover image in article text" — if enabled and the article body
